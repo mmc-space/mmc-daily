@@ -1,0 +1,32 @@
+<script>
+  const compose = (middleware) => {
+    return (ctx) => {
+      const dispatch = (index) => {
+        const fn = middleware[index]
+        if (!fn) return Promise.resolve()
+        return Promise.resolve(fn(ctx, () => dispatch(index + 1)))
+      }
+
+      return dispatch(0)
+    }
+  }
+
+  const middleware1 = (ctx, next) => {
+    console.log('middleware 1')
+    next()
+  }
+
+  const middleware2 = (ctx, next) => {
+    console.log('middleware 2')
+    next()
+  }
+
+  const middleware3 = (ctx, next) => {
+    console.log('middleware 3')
+    next()
+  }
+
+  const composed = compose([middleware1, middleware2, middleware3])
+
+  console.log(composed)
+</script>
