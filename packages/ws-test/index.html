@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>123</h1>
+    <script>
+      const ws = new WebSocket('ws://localhost:8080')
+
+      ws.onopen = function () {
+        console.log('connected to server')
+
+        setInterval(() => {
+          // 发送消息到服务器
+          ws.send('Hello, Server!')
+        }, 1000)
+      }
+
+      ws.onmessage = function (event) {
+        console.log('received: %s', event.data)
+      }
+    </script>
+  </body>
+</html>
