@@ -40,6 +40,5 @@ int Index_KMP(SString str, SString target, int Next[])
 
 int main()
 {
-
   return 0;
 }
