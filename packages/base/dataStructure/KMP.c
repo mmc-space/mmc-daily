@@ -22,17 +22,12 @@ int Index_KMP(SString str, SString target, int Next[])
       j++;
     }
     else
-    {
-      // 匹配失败 寻找下一个起点
-      j = Next[j];
+      j = Next[j]; // 匹配失败 寻找下一个起点
     }
-  }
 
   // 匹配成功 返回起点坐标
   if (j < target.length)
-  {
     return i - target.length;
-  }
 
   // 未找到 返回 -1
   return -1;
